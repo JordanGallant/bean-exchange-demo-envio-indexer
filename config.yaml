@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: bean-exchange
+networks:
+- id: 10143
+  start_block: 0
+  contracts:
+  - name: BeanExchangeFactory
+    address:
+    - 0x0085388Da29e74b66ac6b6fF690973bE05403f67
+    handler: src/EventHandlers.ts
+    events:
+    - event: PairCreated(address indexed token0, address indexed token1, address pair, uint256 )
+  - name: Pair
+    handler: src/EventHandlers.ts
+    events:
+    - event: Approval(address indexed owner, address indexed spender, uint256 value)
+    - event: Burn(address indexed sender, uint256 amount0, uint256 amount1, address indexed to)
+    - event: Mint(address indexed sender, uint256 amount0, uint256 amount1)
+    - event: Swap(address indexed sender, uint256 amount0In, uint256 amount1In, uint256 amount0Out, uint256 amount1Out, address indexed to)
+    - event: Sync(uint112 reserve0, uint112 reserve1)
+    - event: Transfer(address indexed from, address indexed to, uint256 value)
